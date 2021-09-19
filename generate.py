@@ -9,6 +9,8 @@ from urllib.request import urlopen
 from tqdm import tqdm
 import sys
 import os
+import shutil
+
 
 # pip install taming-transformers doesn't work with Gumbel, but does not yet work with coco etc
 # appending the path does work with Gumbel, but gives ModuleNotFoundError: No module named 'transformers' for coco etc
@@ -864,9 +866,9 @@ try:
             # Ready to stop yet?
             if i == args.max_iterations:
                 if not args.video_style_dir:
-                    out = synth(z)
-                    p = "test"
-                    TF.to_pil_image(out[0].cpu()).save(f'output/{p}.png')
+                    new_file_name = '-'.join(args.prompts)
+                    shutil.copy(args.output,f'output/{new_file_name}.png')
+
                     # we're done
                     break
                 else:                    
