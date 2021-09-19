@@ -865,7 +865,8 @@ try:
             if i == args.max_iterations:
                 if not args.video_style_dir:
                     out = synth(z)
-                    TF.to_pil_image(out[0].cpu()).save(f'output/{args.prompts}.png')
+                    p = "test"
+                    TF.to_pil_image(out[0].cpu()).save(f'output/{p}.png')
                     # we're done
                     break
                 else:                    
